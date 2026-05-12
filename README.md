@@ -24,17 +24,12 @@ A simple command-line tool to manage your tasks and to-do list.
 
 - **Add a task**
     ```sh
-    task-cli add "Buy groceries"
-    ```
-
-- **Delete a task**
-    ```sh
-    task-cli delete 1
+    task-cli add "Add todo"
     ```
 
 ## Uninstall
 
-To remove the CLI from global commands:
+To remove the CLI from global commands(run this inside the project folder):
 ```sh
 npm unlink -g
 ```
@@ -45,5 +40,3 @@ npm unlink -g
 - Node.js and npm installed
 
 ---
-
-Feel free to expand this README with more commands and project details!
