@@ -1,20 +1,65 @@
 #!/usr/bin/env node
 
-import chalk from 'chalk';
+import fs from 'fs';
+import { Command } from 'commander';
 
-const command = process.argv[2];
-const argument = process.argv[3];
+const program = new Command();
 
-switch(command)
+const FilePath = 'tasks.json';
+
+function getAlltasks()
 {
-    case 'add':
-        console.log(chalk.blue("Entry added: "+argument));
-        break;
+    const fileExit = fs.existsSync(FilePath);
+    if(!fileExit)
+    {
+        return [];
+    }
 
-    case 'delete':
-        console.log("Entry deleted: "+ argument);
-        break;
+    const filecontent = fs.readFileSync(FilePath,'utf-8');
 
-    default:
-        console.log("wrong command");
+    const task= JSON.parse(filecontent);
+
+    return task;
 }
+
+function saveTask(file)
+{
+    const data = JSON.stringify(file);
+    fs.writeFileSync(FilePath, data,'utf-8');
+}
+
+program
+.command('add <task>')
+.description('add todo to the list')
+.action((task)=>{
+    const alltasks = getAlltasks();
+
+    const newtask={
+        id: Date.now(),
+        todo:task
+    };
+
+    alltasks.push(newtask);
+
+    saveTask(alltasks);
+
+    console.log(`Tasks added successfully : ${task}`);
+}
+);
+
+program
+.command('list')
+.description('Shows all todo list')
+.action(() =>{
+ const taskname= getAlltasks();
+
+ for(let i=0;i<taskname.length;i++)
+ {
+    console.log(taskname[i].todo);
+ }
+    
+});
+
+
+program.parse(process.argv);
+
