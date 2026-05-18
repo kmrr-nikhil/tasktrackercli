@@ -1,11 +1,14 @@
 #!/usr/bin/env node
+
+import chalk from 'chalk';
+
 const command = process.argv[2];
 const argument = process.argv[3];
 
 switch(command)
 {
     case 'add':
-        console.log("Entry added: "+argument);
+        console.log(chalk.blue("Entry added: "+argument));
         break;
 
     case 'delete':

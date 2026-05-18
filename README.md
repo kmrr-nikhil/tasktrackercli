@@ -9,13 +9,16 @@ A simple command-line tool to manage your tasks and to-do list.
     git clone https://github.com/kmrr-nikhil/tasktrackercli.git
     cd tasktrackercli
     ```
-
-2. **Make the CLI script executable**
+2. **Install dependencies**
     ```sh
-    chmod +x task-cli.js
+    npm install
+    ```
+3. **Make the CLI script executable**
+    ```sh
+    chmod +x task-cli.mjs
     ```
 
-3. **Install the CLI globally**
+4. **Install the CLI globally**
     ```sh
     npm link
     ```
